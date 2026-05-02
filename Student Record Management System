@@ -1,0 +1,132 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+public:
+	int studentId, age, marks;
+	string name;
+
+void addStudent() {
+	cout << "Enter Student ID: ";
+	cin >> studentId;
+	cin.ignore();
+
+	cout << "Enter Name: ";
+	getline(cin, name);
+
+	cout << "Enter Age: ";
+	cin >> age;
+
+	cout << "Enter Marks: ";
+	cin >> marks;
+}
+
+void displayStudent() {
+	cout << "\nStudent ID: " << studentId;
+	cout << "\nName: " << name;
+	cout << "\nAge: " << age;
+	cout << "\nMarks: " << marks;
+	cout << "\nStatus: " << checkMarks() << endl;
+}
+
+string checkMarks() {
+
+	if (marks >= 50) {
+		return "Pass";
+	}	else {
+			return "Fail";
+	}
+}
+};
+
+int main() {
+	Student s[100];
+	int count = 0;
+	int choice;
+	int searchId;
+	bool found;
+
+	do {
+		cout << "\n\n--- Student Record Management System ---\n";
+		cout << "1. Add Student\n";
+		cout << "2. Display All Students\n";
+		cout << "3. Search Student\n";
+		cout << "4. Update Marks\n";
+		cout << "5. Exit\n";
+		cout << "Enter your choice: ";
+		cin >> choice;
+
+		switch (choice) {
+		case 1:
+			if (count < 100) {
+				s[count].addStudent();
+				count++;
+				cout << "Student record added successfully.\n";
+			} else {
+				cout << "Storage is full.\n";
+			}
+			break;
+
+		case 2:
+			if (count == 0) {
+				cout << "No student records available.\n";
+			} else {
+				for (int i = 0; i < count; i++) {
+					cout << "\n--- Student " << i + 1 << " ---";
+					s[i].displayStudent();
+				}
+			}
+			break;
+
+		case 3:
+			cout << "Enter Student ID to search: ";
+			cin >> searchId;
+			found = false;
+
+			for (int i = 0; i < count; i++) {
+				if (s[i].studentId == searchId) {
+					cout << "\nStudent found:\n";
+					s[i].displayStudent();
+					found = true;
+					break;
+				}
+			}
+
+			if (!found) {
+				cout << "Student not found.\n";
+			}
+			break;
+
+		case 4:
+			cout << "Enter Student ID to update mark: ";
+			cin >> searchId;
+			found = false;
+
+			for (int i = 0; i < count; i++) {
+				if (s[i].studentId == searchId) {
+					cout << "Enter new marks: ";
+					cin >> s[i].marks;
+					cout << "Marks updated successfully.\n";
+					found = true;
+					break;
+				}
+			}
+
+			if (!found) {
+				cout << "Student not found.\n";
+			}
+			break;
+
+		case 5:
+			cout << "Exiting program.\n";
+			break;
+
+		default:
+			cout << "Invalid choice. Try again.\n";
+		}
+
+	} while (choice != 5);
+
+	return 0;
+}
