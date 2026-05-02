@@ -10,10 +10,10 @@ public:
 void addStudent() { // add new student
 	cout << "Enter Student ID: ";
 	cin >> studentId;
-	cin.ignore(); // clear buffer before getline
+	cin.ignore(); // clears leftover newline so getline works
 
 	cout << "Enter Name: ";
-	getline(cin, name); // full name with spaces
+	getline(cin, name); // allows user to input full name with spaces
 
 	cout << "Enter Age: ";
 	cin >> age;
@@ -22,7 +22,7 @@ void addStudent() { // add new student
 	cin >> marks;
 }
 
-void displayStudent() { // display student info
+void displayStudent() { // display student information
 	cout << "\nStudent ID: " << studentId;
 	cout << "\nName: " << name;
 	cout << "\nAge: " << age;
