@@ -7,13 +7,13 @@ public:
 	int studentId, age, marks;
 	string name;
 
-void addStudent() {
+void addStudent() { // add new student
 	cout << "Enter Student ID: ";
 	cin >> studentId;
-	cin.ignore();
+	cin.ignore(); // clear buffer before getline
 
 	cout << "Enter Name: ";
-	getline(cin, name);
+	getline(cin, name); // full name with spaces
 
 	cout << "Enter Age: ";
 	cin >> age;
@@ -22,7 +22,7 @@ void addStudent() {
 	cin >> marks;
 }
 
-void displayStudent() {
+void displayStudent() { // display student info
 	cout << "\nStudent ID: " << studentId;
 	cout << "\nName: " << name;
 	cout << "\nAge: " << age;
@@ -30,7 +30,7 @@ void displayStudent() {
 	cout << "\nStatus: " << checkMarks() << endl;
 }
 
-string checkMarks() {
+string checkMarks() { // pass/fail check
 
 	if (marks >= 50) {
 		return "Pass";
@@ -41,13 +41,13 @@ string checkMarks() {
 };
 
 int main() {
-	Student s[100];
-	int count = 0;
+	Student s[100]; // max 100 students allowed
+	int count = 0; // current number of students
 	int choice;
 	int searchId;
 	bool found;
 
-	do {
+	do { // menu loop
 		cout << "\n\n--- Student Record Management System ---\n";
 		cout << "1. Add Student\n";
 		cout << "2. Display All Students\n";
@@ -57,8 +57,8 @@ int main() {
 		cout << "Enter your choice: ";
 		cin >> choice;
 
-		switch (choice) {
-		case 1:
+		switch (choice) { // menu selection
+		case 1: // add student
 			if (count < 100) {
 				s[count].addStudent();
 				count++;
@@ -68,7 +68,7 @@ int main() {
 			}
 			break;
 
-		case 2:
+		case 2: // display all students
 			if (count == 0) {
 				cout << "No student records available.\n";
 			} else {
@@ -79,7 +79,7 @@ int main() {
 			}
 			break;
 
-		case 3:
+		case 3: // search student
 			cout << "Enter Student ID to search: ";
 			cin >> searchId;
 			found = false;
@@ -98,7 +98,7 @@ int main() {
 			}
 			break;
 
-		case 4:
+		case 4: // update marks
 			cout << "Enter Student ID to update mark: ";
 			cin >> searchId;
 			found = false;
@@ -118,15 +118,15 @@ int main() {
 			}
 			break;
 
-		case 5:
+		case 5: // exit program
 			cout << "Exiting program.\n";
 			break;
 
-		default:
+		default: // invalid input
 			cout << "Invalid choice. Try again.\n";
 		}
 
-	} while (choice != 5);
+	} while (choice != 5); // repeat loop until exit selected
 
 	return 0;
 }
